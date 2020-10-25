@@ -1,10 +1,11 @@
 <template>
     <div class="row">
-        <div class="col-12"><Search /></div>
         <div class="col">
+            <Search />
             <AllItems/>
         </div>
         <div class="col">
+            <h3 class="pb-4">Выбранные элементы</h3>
             <SelectedItems/>
         </div>
     </div>
