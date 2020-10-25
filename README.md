@@ -1,4 +1,4 @@
-# gnp-vue-test
+# vue-test
 
 ## Project setup
 ```
