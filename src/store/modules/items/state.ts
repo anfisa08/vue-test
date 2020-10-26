@@ -5,8 +5,7 @@ export interface ExampleStateInterface {
     selectedItems: Element[];
     filteredItems: Element[];
     historyItems: ElementHistory[];
-    historyType: HistoryType[],
-    searchText: string
+    historyType: HistoryType[]
 }
 
 const state: ExampleStateInterface = {
@@ -17,8 +16,7 @@ const state: ExampleStateInterface = {
     historyType: [
         {name: 'added', title: 'Добавление'},
         {name: 'deleted', title: 'Удаление'}
-    ],
-    searchText: ''
+    ]
 };
 
 export default state;

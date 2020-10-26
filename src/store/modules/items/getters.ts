@@ -14,9 +14,6 @@ const getters: GetterTree<ExampleStateInterface, StateInterface> = {
     },
     historyItems(state: ExampleStateInterface){
         return state.historyItems
-    },
-    searchText(state: ExampleStateInterface){
-        return state.searchText
     }
 };
 

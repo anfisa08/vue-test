@@ -45,8 +45,8 @@ const mutation: MutationTree<ExampleStateInterface> = {
     addHistory(state, item: ElementHistory) {
         state.historyItems.push(item)
     },
-    filteredItems(state) {
-        const filter = state.searchText;
+    filteredItems(state, search = '') {
+        const filter = search;
 
         let filteredItems: Array<Element> = [];
 
@@ -81,12 +81,6 @@ const mutation: MutationTree<ExampleStateInterface> = {
 
         state.filteredItems = filteredItems;
 
-    },
-    setSearchText(state, val: string) {
-        state.searchText = val;
-    },
-    addItem(state, element: Element) {
-        state.items.push(element);
     }
 };
 
