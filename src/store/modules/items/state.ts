@@ -6,6 +6,7 @@ export interface ItemsStateInterface {
     filteredItems: Element[];
     historyItems: ElementHistory[];
     historyType: HistoryType[];
+    searchPhrase: string;
 }
 
 const state: ItemsStateInterface = {
@@ -16,7 +17,8 @@ const state: ItemsStateInterface = {
     historyType: [
         {name: 'added', title: 'Добавление'},
         {name: 'deleted', title: 'Удаление'}
-    ]
+    ],
+    searchPhrase: ''
 };
 
 export default state;

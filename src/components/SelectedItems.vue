@@ -3,10 +3,10 @@
         <div v-for="item in selectedItems" :key="item.id"
              class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{item.name}}</h5>
+                <h5 class="mb-1" v-html="item.name"></h5>
                 <button type="button" class="btn btn-primary" @click="remove(item)">-</button>
             </div>
-            <p class="mb-1" v-for="subItem in item.items" :key="subItem.id">{{subItem.name}}</p>
+            <p class="mb-1" v-for="subItem in item.items" :key="subItem.id" v-html="subItem.name"></p>
         </div>
     </div>
 </template>
@@ -23,14 +23,7 @@
         }
 
         remove(item: Element) {
-            const foundItemIndex = this.selectedItems.indexOf(item);
-            if (foundItemIndex === -1) {
-                console.error('Данный элемент не найден!');
-                return;
-            }
-
-            store.commit('items/turnBack', item);
-            store.commit('items/removeFromSelectedItems', foundItemIndex);
+            store.dispatch('items/removeFromSelectedItems', item)
             store.dispatch('items/addToHistory', {item, type: 1});
         }
     }

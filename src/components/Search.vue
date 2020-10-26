@@ -16,7 +16,7 @@
 
         @Watch('searchPhrase')
         onPropertyChanged(value: string, oldValue: string) {
-            store.commit('items/filteredItems', value);
+            store.dispatch('items/setSearchPhrase', value);
         }
     }
 </script>

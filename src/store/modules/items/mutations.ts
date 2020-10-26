@@ -2,14 +2,14 @@ import {MutationTree} from 'vuex';
 import {ItemsStateInterface} from './state';
 import {ElementHistory, Element} from '@/types/models';
 
-function calcIncludes(item: Element, filterValue: string) :number{
+function calcIncludes(item: Element, filterValue: string): number {
     let countIncludes: number = 0;
 
     let regExp = new RegExp(filterValue, 'gi');
 
-    if(item.name.toLowerCase().includes(filterValue)) {
+    if (item.name.toLowerCase().includes(filterValue)) {
         const matches = item.name.toLowerCase().match(regExp);
-        if(matches && matches.length > 0)
+        if (matches && matches.length > 0)
             countIncludes = matches.length;
     }
 
@@ -17,7 +17,7 @@ function calcIncludes(item: Element, filterValue: string) :number{
     item.items.forEach(el => {
         if (el.name.toLowerCase().includes(filterValue)) {
             const matches = el.name.toLowerCase().match(regExp);
-            if(matches && matches.length > 0)
+            if (matches && matches.length > 0)
                 countIncludes += matches.length;
         }
     });
@@ -25,19 +25,25 @@ function calcIncludes(item: Element, filterValue: string) :number{
     return countIncludes;
 }
 
+function removeHtmlTags(item: Element): Element {
+    item.name = item.name.replace(/<[^>]+>/g, '');
+
+    item.items.forEach(el => {
+        el.name = el.name.replace(/<[^>]+>/g, '');
+    });
+
+    return item
+}
+
 const mutation: MutationTree<ItemsStateInterface> = {
-    updateItems(state, json){
+    updateItems(state, json) {
         state.items = json;
     },
-    select(state, item: Element) {
-        state.selectedItems.push(item)
+    select(state, el: Element) {
+        state.selectedItems.push(removeHtmlTags(el))
     },
     removeFromItems(state, itemIndex: number) {
         state.filteredItems.splice(itemIndex, 1);
-    },
-    turnBack(state, item: Element) {
-        state.filteredItems.push(item);
-        state.filteredItems.sort((a:Element, b:Element) => a.id - b.id);
     },
     removeFromSelectedItems(state, itemIndex: number) {
         state.selectedItems.splice(itemIndex, 1);
@@ -45,28 +51,29 @@ const mutation: MutationTree<ItemsStateInterface> = {
     addHistory(state, item: ElementHistory) {
         state.historyItems.push(item)
     },
-    filteredItems(state, search = '') {
-        const filter = search.toLowerCase();
+    filteredItems(state) {
+        const filter = state.searchPhrase;
 
         let filteredItems: Array<Element> = [];
 
-        state.filteredItems = state.items;
-
-        state.filteredItems.forEach(el => {
+        state.filteredItems = state.items.filter(el => {
             const inSelected = state.selectedItems.indexOf(el);
+
+            el = removeHtmlTags(el);
 
             if (inSelected === -1) {
                 if (filter === '') {
                     filteredItems.push(el);
-                    filteredItems.sort((a:Element, b:Element) => a.id - b.id);
                 } else {
                     let include = false;
-                    if (el.name.toLowerCase().includes(filter)) {
+                    if (el.name.includes(filter)) {
+                        el.name = el.name.replaceAll(filter, `<span style="background: rgba(76,152,175,0.3)">${filter}</span>`);
                         include = true;
                     }
 
                     el.items.forEach(item => {
-                        if (item.name.toLowerCase().includes(filter)) {
+                        if (item.name.includes(filter)) {
+                            item.name = item.name.replaceAll(filter, `<span style="background: rgba(76, 152, 175,0.3)">${filter}</span>`);
                             include = true;
                         }
                     });
@@ -74,13 +81,21 @@ const mutation: MutationTree<ItemsStateInterface> = {
                     if (include)
                         filteredItems.push(el);
 
-                    filteredItems.sort((a:Element, b:Element) => calcIncludes(b, filter) - calcIncludes(a, filter));
                 }
             }
         });
 
+        if (filter === '') {
+            filteredItems.sort((a: Element, b: Element) => a.id - b.id);
+        } else {
+            filteredItems.sort((a: Element, b: Element) => calcIncludes(b, filter) - calcIncludes(a, filter));
+        }
+
         state.filteredItems = filteredItems;
 
+    },
+    setSearchPhrase(state, search) {
+        state.searchPhrase = search
     }
 };
 
