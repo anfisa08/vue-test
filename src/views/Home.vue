@@ -1,11 +1,11 @@
 <template>
     <div class="row">
         <div class="col">
-            <Search />
+            <Search/>
             <AllItems/>
         </div>
         <div class="col">
-            <h3 class="pb-4">Выбранные элементы</h3>
+            <h3 class="pb-4">{{selectTitle}}</h3>
             <SelectedItems/>
         </div>
     </div>
@@ -22,6 +22,6 @@
         components: {AllItems, SelectedItems, Search}
     })
     export default class Home extends Vue {
-
+        selectTitle: string = 'Выбранные элементы';
     }
 </script>
