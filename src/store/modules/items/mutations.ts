@@ -7,16 +7,16 @@ function calcIncludes(item: Element, filterValue: string): number {
 
     let regExp = new RegExp(filterValue, 'gi');
 
-    if (item.name.toLowerCase().includes(filterValue)) {
-        const matches = item.name.toLowerCase().match(regExp);
+    if (item.name.includes(filterValue)) {
+        const matches = item.name.match(regExp);
         if (matches && matches.length > 0)
             countIncludes = matches.length;
     }
 
 
     item.items.forEach(el => {
-        if (el.name.toLowerCase().includes(filterValue)) {
-            const matches = el.name.toLowerCase().match(regExp);
+        if (el.name.includes(filterValue)) {
+            const matches = el.name.match(regExp);
             if (matches && matches.length > 0)
                 countIncludes += matches.length;
         }
