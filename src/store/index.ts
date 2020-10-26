@@ -14,5 +14,6 @@ export default new Vuex.Store<StateInterface>({
   },
   modules: {
     items
-  }
+  },
+  strict: process.env.NODE_ENV !== 'production'
 })

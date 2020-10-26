@@ -18,7 +18,7 @@
     @Component
     export default class AllItems extends Vue {
 
-        mounted(){
+        created(){
             store.dispatch('items/getItems')
         }
 
