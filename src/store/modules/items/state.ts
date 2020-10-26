@@ -1,11 +1,11 @@
-import {ElementHistory, HistoryType,Element} from '@/types/models';
+import {ElementHistory, HistoryType, Element} from '@/types/models';
 
 export interface ItemsStateInterface {
     items: Element[];
     selectedItems: Element[];
     filteredItems: Element[];
     historyItems: ElementHistory[];
-    historyType: HistoryType[]
+    historyType: HistoryType[];
 }
 
 const state: ItemsStateInterface = {

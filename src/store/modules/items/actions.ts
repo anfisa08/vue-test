@@ -5,11 +5,10 @@ import {ElementHistory} from '@/types/models';
 import json from '@/assets/items.json'
 
 const actions: ActionTree<ItemsStateInterface, StateInterface> = {
-    async getItems({commit}){
+    async getItems({state, commit}, apiUrl){
         let jsonData;
-
         try {
-            let response = await fetch('https://c56b8e9d-508d-4ea7-8bdf-1a615fc7dfaa.mock.pstmn.io/items/');
+            let response = await fetch(apiUrl);
 
             if(response.status === 200) {
                 jsonData = await response.json();

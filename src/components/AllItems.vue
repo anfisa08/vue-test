@@ -19,7 +19,7 @@
     export default class AllItems extends Vue {
 
         created(){
-            store.dispatch('items/getItems')
+            store.dispatch('items/getItems', process.env.VUE_APP_API_URL)
         }
 
         get filteredItems(): Element[]{
