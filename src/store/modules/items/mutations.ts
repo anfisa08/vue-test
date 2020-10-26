@@ -1,5 +1,5 @@
 import {MutationTree} from 'vuex';
-import {ExampleStateInterface} from './state';
+import {ItemsStateInterface} from './state';
 import {ElementHistory, Element} from '@/types/models';
 
 function calcIncludes(item: Element, filterValue: string) :number{
@@ -25,7 +25,7 @@ function calcIncludes(item: Element, filterValue: string) :number{
     return countIncludes;
 }
 
-const mutation: MutationTree<ExampleStateInterface> = {
+const mutation: MutationTree<ItemsStateInterface> = {
     updateItems(state, json){
         state.items = json;
     },

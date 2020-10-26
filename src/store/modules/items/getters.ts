@@ -1,18 +1,18 @@
 import {GetterTree} from 'vuex';
 import {StateInterface} from '@/store';
-import {ExampleStateInterface} from './state';
+import {ItemsStateInterface} from './state';
 
-const getters: GetterTree<ExampleStateInterface, StateInterface> = {
-    items(state: ExampleStateInterface){
+const getters: GetterTree<ItemsStateInterface, StateInterface> = {
+    items(state){
         return state.items
     },
-    selectedItems(state: ExampleStateInterface){
+    selectedItems(state){
         return state.selectedItems
     },
-    filteredItems(state: ExampleStateInterface){
+    filteredItems(state){
         return state.filteredItems;
     },
-    historyItems(state: ExampleStateInterface){
+    historyItems(state){
         return state.historyItems
     }
 };

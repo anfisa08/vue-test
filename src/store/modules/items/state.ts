@@ -1,6 +1,6 @@
 import {ElementHistory, HistoryType,Element} from '@/types/models';
 
-export interface ExampleStateInterface {
+export interface ItemsStateInterface {
     items: Element[];
     selectedItems: Element[];
     filteredItems: Element[];
@@ -8,7 +8,7 @@ export interface ExampleStateInterface {
     historyType: HistoryType[]
 }
 
-const state: ExampleStateInterface = {
+const state: ItemsStateInterface = {
     items: [],
     selectedItems: [],
     filteredItems: [],
