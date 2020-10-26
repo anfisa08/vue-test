@@ -1,1 +1,16 @@
 @import "node_modules/bootstrap/scss/bootstrap";
+
+.icon404 {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+  height: 60px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f4fcff;
+  font-size: 20px;
+  color: grey;
+}

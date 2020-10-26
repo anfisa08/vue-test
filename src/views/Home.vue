@@ -19,7 +19,12 @@
     import Search from '@/components/Search.vue'
 
     @Component({
-        components: {AllItems, SelectedItems, Search}
+        components: {AllItems, SelectedItems, Search},
+        metaInfo() {
+            return {
+                title: "Главная страница"
+            };
+        }
     })
     export default class Home extends Vue {
         selectTitle: string = 'Выбранные элементы';
