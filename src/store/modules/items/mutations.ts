@@ -7,16 +7,16 @@ function calcIncludes(item: Element, filterValue: string): number {
 
     let regExp = new RegExp(filterValue, 'gi');
 
-    if (item.name.includes(filterValue)) {
-        const matches = item.name.match(regExp);
+    if (item.name.toLowerCase().includes(filterValue)) {
+        const matches = item.name.toLowerCase().match(regExp);
         if (matches && matches.length > 0)
             countIncludes = matches.length;
     }
 
 
     item.items.forEach(el => {
-        if (el.name.includes(filterValue)) {
-            const matches = el.name.match(regExp);
+        if (el.name.toLowerCase().includes(filterValue)) {
+            const matches = el.name.toLowerCase().match(regExp);
             if (matches && matches.length > 0)
                 countIncludes += matches.length;
         }
@@ -52,7 +52,7 @@ const mutation: MutationTree<ItemsStateInterface> = {
         state.historyItems.push(item)
     },
     filteredItems(state) {
-        const filter = state.searchPhrase;
+        const filter = state.searchPhrase.toLowerCase();
 
         let filteredItems: Array<Element> = [];
 
@@ -66,14 +66,14 @@ const mutation: MutationTree<ItemsStateInterface> = {
                     filteredItems.push(el);
                 } else {
                     let include = false;
-                    if (el.name.includes(filter)) {
-                        el.name = el.name.replaceAll(filter, `<span style="background: rgba(76,152,175,0.3)">${filter}</span>`);
+                    if (el.name.toLowerCase().includes(filter)) {
+                        el.name = el.name.replaceAll(new RegExp('('+filter+')','gim'), '<span style="background: rgba(76, 152, 175,0.3)">$1</span>');
                         include = true;
                     }
 
                     el.items.forEach(item => {
-                        if (item.name.includes(filter)) {
-                            item.name = item.name.replaceAll(filter, `<span style="background: rgba(76, 152, 175,0.3)">${filter}</span>`);
+                        if (item.name.toLowerCase().includes(filter)) {
+                            item.name = item.name.replaceAll(new RegExp('('+filter+')','gim'),  '<span style="background: rgba(76, 152, 175,0.3)">$1</span>');
                             include = true;
                         }
                     });
