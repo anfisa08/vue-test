@@ -29,12 +29,6 @@ function calcIncludes(item: Element, filterValue: string): number {
 
 
 const getters: GetterTree<ItemsStateInterface, StateInterface> = {
-    items(state) {
-        return state.items
-    },
-    selectedItems(state) {
-        return state.selectedItems
-    },
     filteredItems(state) {
         const filter = state.searchPhrase.toLowerCase();
 
@@ -70,13 +64,7 @@ const getters: GetterTree<ItemsStateInterface, StateInterface> = {
         }
 
         return filteredItems;
-    },
-    historyItems(state) {
-        return state.historyItems
-    },
-    searchPhrase(state) {
-        return state.searchPhrase
-    },
+    }
 };
 
 export default getters;

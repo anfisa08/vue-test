@@ -1,17 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import items from './modules/items'
+import {ItemsStateInterface} from './modules/items/state'
 
 Vue.use(Vuex);
 
 export interface StateInterface {
-  version: string
+  items: ItemsStateInterface
 }
 
 export default new Vuex.Store<StateInterface>({
-  state: {
-    version: '0.0.1'
-  },
   modules: {
     items
   },

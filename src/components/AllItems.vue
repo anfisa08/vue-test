@@ -1,11 +1,13 @@
 <template>
     <div class="list-group">
-        <div v-for="item in filteredItems" :key="item.id" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div v-for="item in filteredItems" :key="item.id"
+             class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1" :inner-html.prop="item.name | highlight(searchPhrase)"></h5>
                 <button type="button" class="btn btn-primary" @click="select(item)">+</button>
             </div>
-            <p class="mb-1" v-for="subItem in item.items" :key="subItem.id" :inner-html.prop="subItem.name | highlight(searchPhrase)"></p>
+            <p class="mb-1" v-for="subItem in item.items" :key="subItem.id"
+               :inner-html.prop="subItem.name | highlight(searchPhrase)"></p>
         </div>
     </div>
 </template>
@@ -18,16 +20,16 @@
     @Component
     export default class AllItems extends Vue {
 
-        created(){
+        created() {
             store.dispatch('items/getItems', process.env.VUE_APP_API_URL)
         }
 
-        get filteredItems(): Element[]{
+        get filteredItems(): Element[] {
             return store.getters['items/filteredItems'];
         }
 
-        get searchPhrase(): string{
-            return store.getters['items/searchPhrase'];
+        get searchPhrase(): string {
+            return store.state.items.searchPhrase
         }
 
         select(item: Element) {

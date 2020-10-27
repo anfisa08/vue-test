@@ -19,7 +19,7 @@
     @Component
     export default class SelectedItems extends Vue {
         get selectedItems():Element[] {
-            return store.getters['items/selectedItems'];
+            return store.state.items.selectedItems;
         }
 
         remove(item: Element) {

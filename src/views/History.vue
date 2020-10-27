@@ -28,7 +28,7 @@
         pageTitle: string = '';
 
         get historyItems() {
-            const historyItems = store.getters['items/historyItems'];
+            const historyItems = store.state.items.historyItems;
 
             switch (this.$props.type) {
                 case 'added':
