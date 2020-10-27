@@ -3,17 +3,20 @@ import {StateInterface} from '@/store';
 import {ItemsStateInterface} from './state';
 
 const getters: GetterTree<ItemsStateInterface, StateInterface> = {
-    items(state){
+    items(state) {
         return state.items
     },
-    selectedItems(state){
+    selectedItems(state) {
         return state.selectedItems
     },
-    filteredItems(state){
+    filteredItems(state) {
         return state.filteredItems;
     },
-    historyItems(state){
+    historyItems(state) {
         return state.historyItems
+    },
+    searchPhrase(state) {
+        return state.searchPhrase
     }
 };
 

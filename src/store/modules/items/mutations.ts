@@ -25,22 +25,12 @@ function calcIncludes(item: Element, filterValue: string): number {
     return countIncludes;
 }
 
-function removeHtmlTags(item: Element): Element {
-    item.name = item.name.replace(/<[^>]+>/g, '');
-
-    item.items.forEach(el => {
-        el.name = el.name.replace(/<[^>]+>/g, '');
-    });
-
-    return item
-}
-
 const mutation: MutationTree<ItemsStateInterface> = {
     updateItems(state, json) {
         state.items = json;
     },
     select(state, el: Element) {
-        state.selectedItems.push(removeHtmlTags(el))
+        state.selectedItems.push(el)
     },
     removeFromItems(state, itemIndex: number) {
         state.filteredItems.splice(itemIndex, 1);
@@ -57,21 +47,17 @@ const mutation: MutationTree<ItemsStateInterface> = {
         state.filteredItems = state.items.filter(el => {
             const inSelected = state.selectedItems.indexOf(el);
 
-            el = removeHtmlTags(el);
-
             if (inSelected === -1) {
                 if (filter === '') {
                     return el;
                 } else {
                     let include = false;
                     if (el.name.toLowerCase().includes(filter)) {
-                        el.name = el.name.replaceAll(new RegExp('('+filter+')','gim'), '<span style="background: rgba(76, 152, 175,0.3)">$1</span>');
                         include = true;
                     }
 
                     el.items.forEach(item => {
                         if (item.name.toLowerCase().includes(filter)) {
-                            item.name = item.name.replaceAll(new RegExp('('+filter+')','gim'),  '<span style="background: rgba(76, 152, 175,0.3)">$1</span>');
                             include = true;
                         }
                     });
