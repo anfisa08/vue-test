@@ -21,8 +21,7 @@ const actions: ActionTree<ItemsStateInterface, StateInterface> = {
             jsonData = json;
         }
 
-        commit('updateItems', jsonData);
-        commit('filteredItems');
+        commit('setItems', jsonData);
 
     },
     removeFromSelectedItems({state, commit}, item) {
@@ -33,7 +32,6 @@ const actions: ActionTree<ItemsStateInterface, StateInterface> = {
         }
 
         commit('removeFromSelectedItems', foundItemIndex);
-        commit('filteredItems')
     },
     addToHistory({state, commit}, {item, type}) {
         const historyElement: ElementHistory = {
@@ -47,7 +45,6 @@ const actions: ActionTree<ItemsStateInterface, StateInterface> = {
     },
     setSearchPhrase({state, commit}, searchPhrase) {
         commit('setSearchPhrase', searchPhrase);
-        commit('filteredItems')
     }
 };
 
