@@ -2,10 +2,10 @@
     <div class="list-group">
         <div v-for="item in filteredItems" :key="item.id" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1" :inner-html.prop="item.name | highlighted(searchPhrase)"></h5>
+                <h5 class="mb-1" :inner-html.prop="item.name | highlight(searchPhrase)"></h5>
                 <button type="button" class="btn btn-primary" @click="select(item)">+</button>
             </div>
-            <p class="mb-1" v-for="subItem in item.items" :key="subItem.id" :inner-html.prop="subItem.name | highlighted(searchPhrase)"></p>
+            <p class="mb-1" v-for="subItem in item.items" :key="subItem.id" :inner-html.prop="subItem.name | highlight(searchPhrase)"></p>
         </div>
     </div>
 </template>

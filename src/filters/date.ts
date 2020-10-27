@@ -1,4 +1,4 @@
-export default function dateFilter(value: string, format = 'date') {
+export default function date(value: string, format = 'date') {
 
     class Options {
 

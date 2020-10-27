@@ -3,13 +3,13 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Meta from "vue-meta";
-import dateFilter from './filters/dateFilter'
-import highlightFilter from './filters/highlightFilter'
+import date from './filters/date'
+import highlight from './filters/highlight'
 
 Vue.config.productionTip = false;
 
-Vue.filter('date', dateFilter);
-Vue.filter('highlighted', highlightFilter);
+Vue.filter('date', date);
+Vue.filter('highlight', highlight);
 
 Vue.use(Meta);
 
