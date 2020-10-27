@@ -54,8 +54,6 @@ const mutation: MutationTree<ItemsStateInterface> = {
     filteredItems(state) {
         const filter = state.searchPhrase.toLowerCase();
 
-        let filteredItems: Array<Element> = [];
-
         state.filteredItems = state.items.filter(el => {
             const inSelected = state.selectedItems.indexOf(el);
 
@@ -63,7 +61,7 @@ const mutation: MutationTree<ItemsStateInterface> = {
 
             if (inSelected === -1) {
                 if (filter === '') {
-                    filteredItems.push(el);
+                    return el;
                 } else {
                     let include = false;
                     if (el.name.toLowerCase().includes(filter)) {
@@ -79,19 +77,17 @@ const mutation: MutationTree<ItemsStateInterface> = {
                     });
 
                     if (include)
-                        filteredItems.push(el);
+                        return el;
 
                 }
             }
         });
 
         if (filter === '') {
-            filteredItems.sort((a: Element, b: Element) => a.id - b.id);
+            state.filteredItems.sort((a: Element, b: Element) => a.id - b.id);
         } else {
-            filteredItems.sort((a: Element, b: Element) => calcIncludes(b, filter) - calcIncludes(a, filter));
+            state.filteredItems.sort((a: Element, b: Element) => calcIncludes(b, filter) - calcIncludes(a, filter));
         }
-
-        state.filteredItems = filteredItems;
 
     },
     setSearchPhrase(state, search) {
