@@ -18,3 +18,20 @@
 .highlighted {
   background: rgba(76, 152, 175, 0.3)
 }
+
+.list-group .list-group-item a {
+  color: $black;
+  display: block;
+  width: 100%;
+}
+
+.list-group .list-group-item a {
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+
+  &.active {
+    color: $primary
+  }
+}

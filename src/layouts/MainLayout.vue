@@ -13,7 +13,7 @@
                 <div class="col-3">
                     <ul class="list-group">
                         <li class="list-group-item list-group-item-action" v-for="(link, index) in links" :key="index">
-                            <router-link :to="link.path">{{link.title}}</router-link>
+                            <router-link :to="link.path" exact>{{link.title}}</router-link>
                         </li>
                     </ul>
                 </div>
