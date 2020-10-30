@@ -6,7 +6,7 @@
                 <h5 class="mb-1" v-html="item.name"></h5>
                 <button type="button" class="btn btn-primary" @click="remove(item)">-</button>
             </div>
-            <p class="mb-1" v-for="subItem in item.items" :key="subItem.id" v-html="subItem.name"></p>
+            <p class="mb-1" v-for="subItem in item.items" :key="subItem.id" v-html="subItem.name" v-opacity></p>
         </div>
     </div>
 </template>
